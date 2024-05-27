@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Quiz</title>
+</head>
+<body>
+  <div id="quiz-container">
+    <!-- Quiz content will be dynamically generated here -->
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is the capital of France?",
+        options: ["Berlin", "Madrid", "Paris"],
+        correctAnswer: "Paris",
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter"],
+        correctAnswer: "Mars",
+      },
+      // Add more quiz questions here...
+    ];
+
+    function loadQuiz() {
+      const quizContainer = document.getElementById("quiz-container");
+      let quizHTML = "";
+
+      quizData.forEach((questionObj, index) => {
+        const questionNumber = index + 1;
+        quizHTML += `
+          <div class="question">
+            <h3>Question ${questionNumber}: ${questionObj.question}</h3>
+            <div class="options" id="options${questionNumber}">
+        `;
+
+        questionObj.options.forEach((option, optionIndex) => {
+          quizHTML += `
+            <label onclick="selectAnswer(${questionNumber}, '${option}')">
+              <input type="radio" name="question${questionNumber}" value="${option}">
+              ${option}
+            </label><br>
+          `;
+        });
+
+        quizHTML += `</div></div>`;
+      });
+
+      quizContainer.innerHTML = quizHTML;
+    }
+
+    function selectAnswer(questionNumber, selectedOption) {
+      const optionsContainer = document.getElementById(`options${questionNumber}`);
+      const allLabels = optionsContainer.querySelectorAll("label");
+
+      allLabels.forEach(label => {
+        const input = label.querySelector("input");
+        input.checked = input.value === selectedOption;
+      });
+    }
+
+    loadQuiz();
+  </script>
+</body>
+</html>

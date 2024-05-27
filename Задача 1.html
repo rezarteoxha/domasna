@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List Manipulation</title>
+  </head>
+  <body>
+    <style>
+        ul li {
+          color: blue;
+        }
+      </style>
+    <ul>
+      <li>Mercedes</li>
+      <li>BMW</li>
+      <li>Audi</li>
+    </ul>
+    <script>
+        document.querySelectorAll('ul li').forEach(function(item) {
+          item.style.color = 'blue';
+        });
+    
+        //  нов елемент во листата
+        var ul = document.querySelector('ul');
+        var newLi = document.createElement('li');
+        newLi.textContent = 'Ferrari';
+        ul.appendChild(newLi);
+      </script>
+  </body>
+</html>
